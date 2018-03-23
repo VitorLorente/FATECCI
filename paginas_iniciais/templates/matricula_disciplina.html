@@ -1,0 +1,24 @@
+{% extends 'base_logged.html' %}
+{% block title %}Matricular Disciplina{% endblock %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+    <br>
+    <div class="body">
+        <h1>Matricule-se agora na FaTecCi!</h1>
+        {{ form.non_field_errors }}
+        <form name="matricula" id="matricula" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.error }}
+                <label for="{{ field.name }}" class="label-style-cadastro">{{ field.label_tag }}</label>
+                {{ field|attr:"class:input"}}
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            {% endfor %}
+            <button type="submit">Matricular</button>
+        </form>
+    </div>
+
+{% endblock %}

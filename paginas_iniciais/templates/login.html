@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+<div class="body">
+    <div class="padrao">
+        <div class="formulario">
+            {{ form.non_field_errors }}
+            <form  name="login" method="POST" id="login">
+                {% csrf_token %}
+                {% for field in form %}
+                    {{ field.error }}
+                    <label for="{{ field.name }}" class="label-style-cadastro">{{ field.label_tag }}</label>
+                    {{ field|attr:"class:input"}}
+                    {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                {% endfor %}
+                <button type="submit">Entrar</button>
+            </form>
+            <br/>
+        </div>
+        <div class="links">
+            <p><a href="esqueci.html">Esqueceu a senha?</a></p>
+            <p><a href="{% url 'matricula' %}">Cadastre-se</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--<label for="loginra"><i class="fa fa-unlock-alt"></i> Identificador</label>:<br/>
+<input type="ra" name="loginra" id="ra" class="input"><br><br/>
+<label for="senha"><i class="fa fa-asterisk"></i> Senha</label>:<br/><br/>
+<input name="senha" type="password" id="senha" class="input"><br/><br/>
+<button type="reset"  class="botao">Limpar</button>
+<button type="submit" class="botao">Enviar</button><br/><br/>
+<label for="lembrar">Lembrar de mim? </label>
+<input name="lembrar" type="checkbox" value="lembrar">!-->

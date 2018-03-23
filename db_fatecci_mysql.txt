@@ -1,0 +1,191 @@
+CREATE TABLE CURSO(
+id INT AUTO_INCREMENT NOT NULL,
+sigla VARCHAR(5) NOT NULL,
+nome VARCHAR(50) NOT NULL,
+
+PRIMARY KEY (id),
+UNIQUE (sigla, nome)
+);
+
+CREATE TABLE DISCIPLINA (
+id INT AUTO_INCREMENT NOT NULL,
+nome VARCHAR(240) NOT NULL,
+carga_horaria TINYINT NOT NULL,
+teoria DECIMAL(3) NOT NULL,
+pratica DECIMAL(3) NOT NULL,
+ementa TEXT NOT NULL,
+competencias TEXT NOT NULL,
+habilidades TEXT,
+conteudo TEXT NOT NULL,
+bibliografia_basica TEXT,
+bibliografia_complementar TEXT,
+PRIMARY KEY (id),
+UNIQUE (nome)
+);
+
+CREATE TABLE DISCIPLINA_OFERTADA(
+id INT AUTO_INCREMENT NOT NULL,
+id_disciplina INT NOT NULL,
+ano SMALLINT NOT NULL,
+semestre CHAR(1) NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (id_disciplina) REFERENCES DISCIPLINA(id),
+UNIQUE (id_disciplina, ano, semestre)
+);
+
+CREATE TABLE ALUNO (
+id INT AUTO_INCREMENT NOT NULL,
+ra INT NOT NULL ,
+nome VARCHAR(120)NOT NULL,
+email VARCHAR(80)NOT NULL,
+celular CHAR(11),
+id_curso INT NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_curso) REFERENCES CURSO(id),
+UNIQUE (ra)
+);
+
+CREATE TABLE PROFESSOR (
+id INT AUTO_INCREMENT NOT NULL,
+ra INT NOT NULL,
+apelido VARCHAR(30) NOT NULL,
+nome VARCHAR(120) NOT NULL,
+email VARCHAR(80) NOT NULL,
+celular CHAR(11),
+
+PRIMARY KEY (id),
+UNIQUE (ra),
+UNIQUE (apelido)
+);
+
+CREATE TABLE TURMA (
+id INT AUTO_INCREMENT NOT NULL,
+id_disciplina INT NOT NULL,
+id_turma CHAR(1) NOT NULL,
+id_professor INT NOT NULL,
+turno VARCHAR(15) NOT NULL,
+PRIMARY KEY (id),
+
+FOREIGN KEY (id_disciplina) REFERENCES DISCIPLINA (id), 
+FOREIGN KEY (id_professor) REFERENCES PROFESSOR (id),
+UNIQUE (id_disciplina, id_turma, turno)
+);
+
+CREATE TABLE MATRICULA(
+id INT AUTO_INCREMENT NOT NULL,
+id_aluno INT NOT NULL,
+id_disciplina INT NOT NULL,
+id_turma INT NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_aluno) REFERENCES ALUNO(id),
+FOREIGN KEY (id_disciplina) REFERENCES DISCIPLINA_OFERTADA(id),
+FOREIGN KEY (id_turma) REFERENCES TURMA(id)
+);
+
+CREATE TABLE QUESTAO(
+id INT AUTO_INCREMENT NOT NULL,
+id_disciplina INT NOT NULL,
+id_turma INT NOT NULL,
+numero INT NOT NULL,
+data_limite_entrega DATE NOT NULL,
+descricao TEXT ,
+data DATE NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_disciplina) REFERENCES DISCIPLINA_OFERTADA(id),
+FOREIGN KEY (id_turma) REFERENCES TURMA(id),
+UNIQUE (id_turma, numero)
+);
+
+CREATE TABLE ARQUIVO_QUESTAO (
+id INT AUTO_INCREMENT NOT NULL,
+id_questao INT NOT NULL,
+arquivo VARCHAR(500) NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_questao) REFERENCES QUESTAO(id),
+UNIQUE (arquivo)
+);
+
+CREATE TABLE RESPOSTA (
+id INT AUTO_INCREMENT NOT NULL,
+id_questao INT NOT NULL,
+id_aluno INT NOT NULL,
+nota DECIMAL(4,2) ,
+avaliacao TEXT NOT NULL,
+descricao TEXT NOT NULL,
+data_de_envio DATE NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_questao) REFERENCES QUESTAO(id),
+FOREIGN KEY (id_aluno) REFERENCES ALUNO(id),
+UNIQUE (id_aluno, id_questao)
+);
+
+CREATE TABLE ARQUIVO_RESPOSTA (
+id INT AUTO_INCREMENT NOT NULL,
+id_resposta INT NOT NULL,
+arquivo VARCHAR(500) NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_resposta) REFERENCES RESPOSTA(id),
+UNIQUE (arquivo)
+);
+
+CREATE TABLE CURSO_TURMA (
+id INT AUTO_INCREMENT NOT NULL,
+id_curso INT NOT NULL,
+id_turma INT NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_curso) REFERENCES CURSO(id),
+FOREIGN KEY (id_turma) REFERENCES TURMA(id),
+UNIQUE (id_curso, id_turma)
+);
+
+CREATE TABLE GRADE_CURRICULAR (
+id INT AUTO_INCREMENT NOT NULL,
+id_curso INT NOT NULL,
+ano SMALLINT NOT NULL,
+semestre CHAR(1) NOT NULL,
+
+PRIMARY KEY(id),
+FOREIGN KEY (id_curso) REFERENCES CURSO (id),
+UNIQUE (id_curso, ano, semestre)
+);
+
+CREATE TABLE PERIODO(
+id INT AUTO_INCREMENT NOT NULL,
+id_grade INT NOT NULL,
+numero TINYINT NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_grade) REFERENCES GRADE_CURRICULAR(id),
+UNIQUE (id_grade, numero)
+);
+
+CREATE TABLE PERIODO_DISCIPLINA (
+id INT AUTO_INCREMENT,
+id_periodo INT NOT NULL,
+id_disciplina INT NOT NULL,
+
+PRIMARY KEY (id),
+FOREIGN KEY (id_periodo) REFERENCES PERIODO(id),
+FOREIGN KEY (id_disciplina) REFERENCES DISCIPLINA(id),
+UNIQUE (id_periodo, id_disciplina)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+

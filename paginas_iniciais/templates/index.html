@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load static %}
+        <div class="body">
+            <div class='sobre'>
+                <h1>Sobre a FaTecCi</h1><!-- Onde estão o H1 e H2? -->
+                <p>
+                    A <strong>Faculdade Tecnologia e Cidadania - FaTecCi</strong> tem por missão, além de capacitar com excelência os alunos a operarem as mais <em>inovadoras ferramentas 
+                    tecnológicas</em>, instigar estes alunos a utilizarem suas habilidades como um meio de interpratação da sociedade em que vivem, em suas relações culturais, sociais e 
+                    políticas, contribuindo de maneira científica para o esclarecimento sobre determinada realidade social.
+                </p>
+                <p>
+                    Nossos alunos, ao passo em que são atualizados com as mais diversas ferramentas disponíveis no mercado, também são envolvidos em <em>projetos práticos</em>, tendo a oportunidade
+                    de elaborar soluções concretas para problemas reais que dizem respeito a temáticas de <em>interesse social</em>, tais como <em>Gestão de Políticas Públicas</em>, <em>Educação</em>, <em>Transparência</em>,
+                    <em>Acesso à informação</em> e muito mais!
+                </p>
+                <p>
+                    <strong>Faculdade Tecnologia e Cidadania</strong> - educação a serviço da <em>ampliação da cidadania</em> e do <em>aperfeiçoamento da democracia</em>!
+                </p>
+            </div>
+            <div class='ex_alunos'>
+                <h2>Confira os depoimentos de ex-alunos da FaTecCi:</h2><!-- Onde estão o H1 e H2? -->
+                <div class="depoimento">
+                    <p>"A FaTecCi me proporcionou um conhecimento muito amplo e prático na administração e gerência pública,<br />
+                    além de me abrir a cabeça para o conceito de cidadania!"</p>
+                </div>
+
+                <div class="img_aluno">
+                    <p><img src="{% static 'img/gv.jpg' %}" alt='Getúlio Vargas'></p>
+                    <p><strong>Getúlio Vargas</strong></p>
+                </div>
+            </div>
+            
+            <div class='ex_alunos'>
+                <div class="depoimento">
+                    <p>"Na FaTecCi aprendi desde teoria política, visitando autores como Aristóteles, Maquiavel e Rousseau, até<br />
+                    práticas modernas de gestão e tecnologia, que me auxiliaram na integração nacional do Brasil."</p>
+                </div>
+
+                <div class="img_aluno">
+                    <p><img src="{% static 'img/pedro-II.jpg' %}" alt='Dom Pedro segundo'></p><!-- Não é errado, mas é estranho parágrafos com apenas imagens -->
+                    <p><strong>D. Pedro II</strong></p>
+                </div>
+            </div>
+            <div class='ex_alunos'> 
+                <div class="depoimento">
+                    <p>"Vários UX e start up's, manow!!"</p>
+                    <br />
+                </div>
+
+                <div class="img_aluno">
+                    <p><img src="{% static 'img/jheimis.jpg' %}" alt='Jheimisson'></p>
+                    <p><strong>Jheimisson</strong></p>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base_logged.html' %}
+{% block title %}Professor{% endblock %}
+{% block content %}
+{% load static %}
+        <div class="body">
+            <div class="adless">
+                <div class="perfil">    
+                    <ul>
+                        <li>Nome do professor: {{ user.nome }}</li>
+                        <li>RA do professor: {{ user.ra }}</li>
+                    </ul>
+                    <div>
+                        <p>Turmas:</p>
+                        <ul>
+                            {% for turma in turmas %}
+                                <li>{{ turma }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <p><a href="{% url 'cadastro_avaliacao' %}">Cadastrar Avaliações</a></p>
+                    </div>
+                </div>
+                <div class="content">
+                    <div>
+                        <i class="fa fa-exclamation"></i><h2>Avisos:</h2>
+                        <div class="aviso">
+                            <p>Data: 15/11/2017 |</p>
+                            <p>Título do aviso!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                        <div>
+                            <i class="fa fa-pencil-square-o"></i><h2>Cadastrar avisos:</h2>
+                            <form name="cadastro_aviso" method="POST">
+                                <label for="titulo_aviso">Título do aviso: </label>
+                                <input type="text" id="titulo_aviso" placeholder="Insira seu texto..."/>
+                                <label for="texto_aviso">Descrição do aviso: </label>
+                                <textarea id="texto_aviso"></textarea>
+                                <button>Publicar: </button>
+                            </form>
+                        </div>
+                    </div>
+                <div class="content">
+                    <div>
+                        <i class="fa fa-info-circle"></i><h2>Entregas recebidas:</h2>
+                        <ul>
+                            <li class="entregar">Título Matéria 1:
+                                <ul>
+                                    <li>Detalhe 1</li>
+                                    <li>Detalhe 2</li>
+                                    <li>Detalhe 3</li>
+                                    <li>Detalhe 4</li>
+                                </ul>
+                            </li>                       
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+{% endblock %}

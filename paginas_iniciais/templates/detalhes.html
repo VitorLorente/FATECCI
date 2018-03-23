@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Detalhes{% endblock %}
+{% block content %}
+{% load static %}
+        <div class="body">
+            <div class='informacoes_basicas'>
+                <h1>Detalhes do Curso</h1>
+                <h2>Cidadania participativa</h2>
+                <span>Tecnólogo</span> 
+                <br>2 anos</br>
+                <span><a href="{% url 'grade' %}">Ver grade curricular</a></span>
+            </div>
+            <div class='conteudo'>
+                <h3>Objetivo</h3>
+                <p>O curso de <strong>Cidadania participativa</strong> visa capacitar o aluno a utilizar as mais inovadoras<br />
+                    tecnologias, no que diz respeito a <em>Desenvolvimento de software</em> e <em>Redes</em>, ao passo em que<br />
+                    lhe é apresentado um arcabouço sólido de <em>teoria política e social</em>, desenvolvendo suas<br />
+                    habilidades de forma a criar sitemas que aproximem a população dos processos políticos<br />
+                    e de seus representantes, estimulando uma <em>cultura política digital</em> onde a sociedade fiscaliza<br />
+                    o Estado.
+                </p>
+                <h3>Conteúdo</h3>
+                <p>Por meio da técnologia, a intituição fornece as ferramentas necessárias para ideias serem melhores<br />
+                    representadas, trazendo direto para a maior fonte de informação, a internet, o conteudo de concientização<br />
+                    a respeito de política. Tais ferramentas como, programadores, fundamentos de banco de dados, tecnologia<br />
+                    web, dentre muitos outros serão ensinadas durante o curso. Não só ensinado a como fazer mas támbem o que<br />
+                    informar, temos cursos onde a politica sera apresentada de uma forma desmascarada, e ensinar ao cidadão/aluno<br />
+                    usar as informações disponiveis a ele para que essa clareza sejá apresentada a sociedade.
+                </p>
+            </div>
+            <br />
+        </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Noticias{% endblock %}
+{% block content %}
+{% load static %}
+        <div class="body">
+            <div class='ex_alunos'>
+                <h3>Equipe de alunos e alunas da FaTecCi vencem Hackathon com temática TRANSPARÊNCIA DE DADOS</h3><!-- Onde estão o H1 e H2? -->
+                <div class="noticia">
+                    <p>No último domingo, 20, a equipe formada por Maria, José e João - todos <em>alunos da FaTecCi</em> - venceu o <em>Hackathon "De olho na política",</em> promovido por diversas entidades do Terceiro Setor e da sociedade civil organizada em geral. No evento, os competidores apresentaram propostas de plataformas e aplicativos para controle da população sobre campanhas e candidaturas em períodos de eleição. O evento contou com 50 equipes (150 alunos) e reuniu mais de 10 faculdade e 15 ONGs internacionais.</p>
+					<img src="{% static 'img/hackathon-2.jpg' %}"  />
+                    <p>Maria, José e João desenvolveram um sistema que oferece aos usuários um perfil de cada um dos candidatos, contendo dados públicos sobre os mesmos, além de permitir que o usuários escolham os candidato sobre os quais desejam receber atualizações no feed de notícias, que apresenta diariamente a notícias dos principais jornais do país que envolvem os candidatos escolhidos.</p>
+                </div>
+            </div>
+			<div class='ex_alunos'>
+                <h3>Equipe de alunos e alunas da FaTecCi vencem Hackathon com temática TRANSPARÊNCIA DE DADOS</h3><!-- Onde estão o H1 e H2? -->
+                <div class="noticia">
+                    <p>No último domingo, 20, a equipe formada por Maria, José e João - todos <em>alunos da FaTecCi</em> - venceu o <em>Hackathon "De olho na política",</em> promovido por diversas entidades do Terceiro Setor e da sociedade civil organizada em geral. No evento, os competidores apresentaram propostas de plataformas e aplicativos para controle da população sobre campanhas e candidaturas em períodos de eleição. O evento contou com 50 equipes (150 alunos) e reuniu mais de 10 faculdade e 15 ONGs internacionais.</p>
+					<img src="{% static 'img/hackathon-2.jpg' %}" />
+                    <p>Maria, José e João desenvolveram um sistema que oferece aos usuários um perfil de cada um dos candidatos, contendo dados públicos sobre os mesmos, além de permitir que o usuários escolham os candidato sobre os quais desejam receber atualizações no feed de notícias, que apresenta diariamente a notícias dos principais jornais do país que envolvem os candidatos escolhidos.</p>
+                </div>
+            </div>
+        </div>
+{% endblock %}

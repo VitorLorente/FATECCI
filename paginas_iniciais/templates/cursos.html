@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Cursos{% endblock %}
+{% block content %}
+{% load static %}
+        <div class="body">
+            <div class="cursos_geral">
+                <h1>Confira a lista de cursos da FaTecCi:</h1>
+                <div class='lista_cursos'>
+                    <div class="conteudo_curso">
+                        <p>O curso de <strong>Cidadania participativa</strong> visa capacitar o aluno a utilizar as mais inovadoras
+                        tecnologias, no que diz respeito a <em>Desenvolvimento de software</em> e <em>Redes</em>, ao passo em que
+                        lhe é apresentado um arcabouço sólido de <em>teoria política e social</em>, desenvolvendo suas
+                        habilidades de forma a criar sitemas que aproximem a população dos processos políticos
+                        e de seus representantes, estimulando uma <em>cultura política digital</em> onde a sociedade fiscaliza
+                        o Estado.</p>
+                        <a href="{% url 'grade' %}"><p class="curriculo">+ Ver grade curricular</p></a>
+                    </div>
+                    <a href="{% url 'detalhes' %}"><div class="img_curso">
+                        <p><img src="{% static 'img/anonymous.jpg' %}" alt='Logo do curso cidadania participativa'></p>
+                        <p><strong>Cidadania participativa</strong></p>
+                    </div></a>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="lista_cursos">                
+                    <div class="conteudo_curso"> 
+                        <p>O curso de <strong>Privacidade e democracia</strong> visa capacitar o aluno a utilizar as mais inovadoras
+                        tecnologias, no que diz respeito a <em>Criptografia</em> e <em>Segurança de Redes</em>, ao passo em que lhe
+                        é apresentado um arcabouço sólido de <em>História política</em> e <em>Filosofia</em>, desenvolvendo suas
+                        habilidades de forma a criar sitemas seguros de informação e comunicação para a população
+                        em geral, garantindo um espaço democrático saudável, onde ideias possam ser discutidas livremente,
+                        estimulando uma <em>cultura política digital</em> que preza pela <em>privacidade</em> e pela <em>liberdade</em>
+                        </p>
+                        <p><a href='#grade_curricular_si'>+ Ver grade curricular</a></p>
+                    </div>
+                    <a href="#detalhes_si"><div class="img_curso">
+                        <p><img src="{% static 'img/seguranca.jpg' %}" alt='Logo do curso de segurança da informação'></p><p><strong>Privacidade e democracia</strong></p>
+                    </div></a>
+                    </div>
+                </div>
+            </div>              
+        <br />
+        <br />
+        <br />
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cursos - FaTecCi</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+        <link rel="icon" href="{% static 'img/favicon.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Encode+Sans:400,600,700" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class='navbar'>
+            <ul class='container'>
+                <a href="{% url 'home' %}"> <img src="{% static 'img/logo.svg' %}"/> </a>
+                <li class="hidden"><i class="fa fa-bars"></i> Menu</li>
+                <li><a href="{% url 'home' %}"><i class="fa fa-home"></i>Home Page</a></li>
+                <li><a href="{% url 'cursos' %}"><i class="fa fa-list-ul"></i> Cursos</a></li>
+                <li><a href="{% url 'noticias' %}"><i class="fa fa-newspaper-o"></i> Notícias</a></li>
+                <li><a href="{% url 'logout' %}"><i class="fa fa-sign-in"></i> Logout</a></li>
+                {% if user.perfil == 'A' %}
+                    <li><a href="{% url 'pagina_aluno' %}"><i class="fa fa-sign-in"></i> Aluno</a></li>
+                {% else %}
+                    <li><a href="{% url 'pagina_professor' %}"><i class="fa fa-sign-in"></i> Professor</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% block content %}
+        
+        {% endblock %}
+        <div class='footer'>
+            <p>FACULDADE TECNOLOGIA E CIDADANIA - FaTecCi <br />
+                <a href="{% url 'contato' %}"> Contato: </a>(11) 9 9999-9999</p>
+        </div>
+        <script type="text/javascript" src="src/js.js"></script>
+    </body>
+</html>
