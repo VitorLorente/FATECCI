@@ -32,13 +32,13 @@ def checa_professor(usuario):
 def pagina_aluno(request):
     aluno = Aluno.objects.get(id=request.user.id)
     disciplinas = DisciplinaOfertada.objects.all()
-    disciplinas_matriculadas = Matricula.objects.filter(ra_aluno=request.user.id)
+    disciplinas_matriculadas = Matricula.objects.filter(id_aluno=request.user.id)
     lista_disciplinas = []
     for disciplina in disciplinas_matriculadas:
-        lista_disciplinas.append(disciplina.nome_disciplina.nome_disciplina)
+        lista_disciplinas.append(disciplina.id_disciplina)
     
     context = {
-        'curso' : aluno.sigla_curso.nome,
+        'curso' : aluno.id_curso.nome,
         'disciplinasOfertadas' : disciplinas,
         'disciplinas_matriculadas' : disciplinas_matriculadas,
         'lista_disciplinas' : lista_disciplinas
@@ -49,7 +49,7 @@ def pagina_aluno(request):
 @login_required(login_url="/login")
 @user_passes_test(checa_professor)
 def pagina_professor(request):
-    turmas = Turma.objects.filter(ra_professor=request.user.ra)
+    turmas = Turma.objects.filter(id_professor=request.user.id)
     context = {
         'turmas' : turmas
     }
@@ -93,18 +93,16 @@ def matricula_disciplina(request):
 def disciplina(request, slug):
     disciplina = Disciplina.objects.get(slug=slug)
     aluno = Aluno.objects.get(id=request.user.id)
-    matriculas = Matricula.objects.filter(ra_aluno=aluno.ra)
+    matriculas = Matricula.objects.filter(id_aluno=aluno.id)
     lista_matriculas = []
     for item in matriculas:
-        lista_matriculas.append(item.nome_disciplina.nome_disciplina.nome)
+        lista_matriculas.append(item.id_disciplina.id_disciplina.id)
     if request.POST:
         form = MatriculaForm(request.POST)
         if form.is_valid():
             forms = form.save(commit=False)
-            forms.ra_aluno = Aluno.objects.get(id=request.user.id)
-            forms.nome_disciplina = DisciplinaOfertada.objects.get(nome_disciplina=disciplina)
-            forms.ano_ofertado = DisciplinaOfertada.objects.get(nome_disciplina=disciplina)
-            forms.semestre_ofertado = DisciplinaOfertada.objects.get(nome_disciplina=disciplina)
+            forms.id_aluno = Aluno.objects.get(id=request.user.id)
+            forms.id_disciplina = DisciplinaOfertada.objects.get(id_disciplina=disciplina)
             forms.save()
     else:
         form = MatriculaForm()

@@ -49,6 +49,7 @@ class Disciplina(models.Model):
     conteudo = models.TextField()
     bibliografia_basica = models.TextField(blank=True, null=True)
     bibliografia_complementar = models.TextField(blank=True, null=True)
+    slug = models.SlugField(max_length=20)
 
     class Meta:
         db_table = 'DISCIPLINA'

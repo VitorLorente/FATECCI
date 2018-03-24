@@ -1,4 +1,6 @@
-coordenador
-administrador123
+Superuser:
+RA - 1
+Nome - coordenador
+Senha - administrador123
 
 
