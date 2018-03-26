@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 #from cadastros.views import *
 from paginas_iniciais.views import *
-#from questionario.views import *
+from questionario.views import *
 from django.contrib.auth.views import login, logout
 
 urlpatterns = [
@@ -34,5 +34,9 @@ urlpatterns = [
     url(r'^pagina_aluno$', pagina_aluno, name='pagina_aluno'),
     url(r'^pagina_professor$', pagina_professor, name='pagina_professor'),
     url(r'^contato$', contato, name='contato'),
+    url(r'^cadastro_avaliacao$', cadastro_avaliacao, name='cadastro_avaliacao'),
+    url(r'^cadastro_avaliacao2$', cadastro_avaliacao2, name='cadastro_avaliacao2'),
+    url(r'^cadastro_resposta$', cadastro_resposta, name='cadastro_resposta'),
+    url(r'^cadastro_resposta2$', cadastro_resposta2, name='cadastro_resposta2'),
     url(r'^', home, name='home')
 ]

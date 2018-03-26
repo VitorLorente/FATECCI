@@ -29,7 +29,7 @@ class Aluno(Usuario):
         db_table = 'ALUNO'
 
     def __str__(self):
-        return self.ra
+        return str(self.ra)
 
 class Coordenador(Usuario):
     celular = models.CharField(max_length=11, blank=True, null=True)
@@ -67,7 +67,7 @@ class DisciplinaOfertada(models.Model):
         unique_together = (('id_disciplina', 'ano', 'semestre'),)
 
     def __str__(self):
-        return "{} - {} {}".format(self.id_disciplina, self.semestre, self.ano)
+        return "{} - {}º semestre {}".format(self.id_disciplina, self.semestre, self.ano)
 
 class Professor(Usuario):
     apelido = models.CharField(unique=True, max_length=30)
@@ -112,9 +112,13 @@ class Questao(models.Model):
         db_table = 'QUESTAO'
         unique_together = (('id_turma', 'numero'),)
 
+    def __str__(self):
+        return "{} - Turma: {} - Nº {}".format(self.id_disciplina, self.id_turma, self.numero)
+
 class ArquivoQuestao(models.Model):
     id_questao = models.ForeignKey('Questao', models.DO_NOTHING, db_column='id_questao')
-    arquivo = models.CharField(unique=True, max_length=150)
+    arquivo = models.FileField()
+    gabarito = models.CharField(max_length=20)
 
     class Meta:
         db_table = 'ARQUIVO_QUESTAO'
@@ -131,9 +135,12 @@ class Resposta(models.Model):
         db_table = 'RESPOSTA'
         unique_together = (('id_aluno', 'id_questao'),)
 
+    def __str__(self):
+        return "{} - {} - {}".format(self.id_questao, self.id_aluno, self.data_de_envio)
+
 class ArquivoResposta(models.Model):
     id_resposta = models.ForeignKey('Resposta', models.DO_NOTHING, db_column='id_resposta')
-    arquivo = models.CharField(unique=True, max_length=150)
+    arquivo = models.FileField()
 
     class Meta:
         db_table = 'ARQUIVO_RESPOSTA'
@@ -173,3 +180,9 @@ class PeriodoDisciplina(models.Model):
     class Meta:
         db_table = 'PERIODO_DISCIPLINA'
         unique_together = (('id_periodo', 'id_disciplina'),)
+
+class Aviso(models.Model):
+    id_professor = models.ForeignKey(Professor, models.DO_NOTHING, db_column='id_professor')
+    id_turma = models.ForeignKey('Turma', models.DO_NOTHING, db_column='id_turma')
+    data = models.DateField()
+    descricao = models.TextField()

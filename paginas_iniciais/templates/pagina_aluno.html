@@ -32,24 +32,33 @@
                 <div class="content">
                     <div>
                         <i class="fa fa-exclamation"></i><h2>Avisos:</h2>
-                        <div class="aviso">
-                            <p>Data: 15/11/2017 | Título do aviso!</p>
-                        </div>
+                        {% for aviso in lista_avisos %}
+                            <div class="aviso">
+                                <p>{{ aviso.data }} - {{ aviso.id_professor}}</p>
+                                <p>{{ aviso.descricao }}</p>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="content">
                     <div>
                         <i class="fa fa-info-circle"></i><h2>Entregas pendentes:</h2>
-                        <ul>
-                            <li class="entregar">Título Matéria 1:
-                                <ul>
-                                    <li>Detalhe 1</li>
-                                    <li>Detalhe 2</li>
-                                    <li>Detalhe 3</li>
-                                    <li>Detalhe 4</li>
-                                </ul>
-                            </li>                       
-                        </ul>
+                        <table style="width:100%">
+                            <tr>
+                                <th>Turma</th>
+                                <th>Quetionario</th>
+                                <th>Resposta</th>
+                            </tr>
+                            {% for questao in arquivos_questoes %}
+                                {% if questao.id_questao.id_turma in lista_turmas %}
+                                    <tr>
+                                        <td>{{ questao.id_questao.id_disciplina }}</td>
+                                        <td><a href="{% static questao.arquivo %}"> Download </a></td>
+                                        <td><a href="{% url 'cadastro_resposta' %}"> Responder </a></td>                  
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
                     </div>
                 </div>
             </div>

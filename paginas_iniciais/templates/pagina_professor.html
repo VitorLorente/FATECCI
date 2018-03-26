@@ -2,6 +2,7 @@
 {% block title %}Professor{% endblock %}
 {% block content %}
 {% load static %}
+{% load widget_tweaks %}
         <div class="body">
             <div class="adless">
                 <div class="perfil">    
@@ -33,28 +34,37 @@
                 <div class="content">
                         <div>
                             <i class="fa fa-pencil-square-o"></i><h2>Cadastrar avisos:</h2>
-                            <form name="cadastro_aviso" method="POST">
-                                <label for="titulo_aviso">Título do aviso: </label>
-                                <input type="text" id="titulo_aviso" placeholder="Insira seu texto..."/>
-                                <label for="texto_aviso">Descrição do aviso: </label>
-                                <textarea id="texto_aviso"></textarea>
-                                <button>Publicar: </button>
+                            {{ form.non_field_errors }}
+                            <form name="aviso" id="aviso" method="POST">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                {{ field.error }}
+                                <label for="{{ field.name }}" class="label-style-cadastro">{{ field.label_tag }}</label>
+                                {{ field|attr:"class:input"}}
+                                {% if field.help_text %}
+                                    <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            {% endfor %}
+                                <button type="submit">Avisar!</button>
                             </form>
                         </div>
                     </div>
                 <div class="content">
                     <div>
                         <i class="fa fa-info-circle"></i><h2>Entregas recebidas:</h2>
-                        <ul>
-                            <li class="entregar">Título Matéria 1:
+                        {% for resposta in respostas %}
+                            {% if resposta.id_resposta.id_questao.id_turma in turmas %}
                                 <ul>
-                                    <li>Detalhe 1</li>
-                                    <li>Detalhe 2</li>
-                                    <li>Detalhe 3</li>
-                                    <li>Detalhe 4</li>
+                                    <li class="entregar">{{ resposta.id_resposta.id_questao.id_disciplina }}:
+                                        <ul>
+                                            <li>Turma: {{ resposta.id_resposta.id_questao.id_disciplina }}</li>
+                                            <li>R.A.:{{ resposta.id_resposta.id_aluno }}</li>
+                                            <li>Nota: {{ resposta.id_resposta.nota }}</li>
+                                        </ul>
+                                    </li>                       
                                 </ul>
-                            </li>                       
-                        </ul>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

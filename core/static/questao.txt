@@ -1,0 +1,3 @@
+Como resposta, você deve enviar um arquivo .txt contendo 10 afirmativas (entre A e E), separado por ; e sem espaço.
+Exemplo:
+A;B;C;D;E;A;B;C;D;E

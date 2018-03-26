@@ -71,3 +71,8 @@ class MatriculaForm(ModelForm):
         model = Matricula
         fields = ["id_turma"]
         #["nome_disciplina", "ano_ofertado", "semestre_ofertado", "id_turma"]
+
+class AvisoForm(ModelForm):
+    class Meta:
+        model = Aviso
+        fields = ["id_turma", "data", "descricao"]

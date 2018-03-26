@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'paginas_iniciais',
     'authentication',
+    'questionario',
     'widget_tweaks'
 ]
 
@@ -77,23 +78,24 @@ WSGI_APPLICATION = 'fatecci.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'FATECCI',
-        'USER': 'root',
-        'PASSWORD': 'jacklorente123',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+#MySql
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql', 
+#        'NAME': '',
+#        'USER': '',
+#        'PASSWORD': '',
+#        'HOST': 'localhost',
+#        'PORT': '3306',
+#    }
+#}
 
 
 # Password validation
@@ -136,3 +138,5 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'authentication.Usuario'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static')
+MEDIA_URL = '/core/static/'
